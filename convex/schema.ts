@@ -4,7 +4,7 @@ import { v } from "convex/values";
 
 const schema = defineSchema({
   ...authTables,
-  projects: defineTable({
+  events: defineTable({
     name: v.string(),
     userId: v.id("users"),
     joinCode: v.string(),

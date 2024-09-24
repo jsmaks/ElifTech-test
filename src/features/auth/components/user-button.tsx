@@ -13,10 +13,12 @@ import {
 
 import { Loader, LogOutIcon } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { userCurrentUser } from "../api/use-current-user";
+import { useCurrentUser } from "../api/use-current-user";
+import { useRouter } from "next/navigation";
 
 export const UserButton = () => {
-  const { data, isLoading } = userCurrentUser();
+  const router = useRouter();
+  const { data, isLoading } = useCurrentUser();
   const { signOut } = useAuthActions();
 
   if (isLoading) {
@@ -30,6 +32,11 @@ export const UserButton = () => {
 
   const avatarFallback = name!?.charAt(0).toUpperCase();
 
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/auth");
+  };
+
   return (
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger className="outline-none relative">
@@ -42,7 +49,7 @@ export const UserButton = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-60" align="center" side="right">
         <DropdownMenuItem
-          onClick={() => signOut()}
+          onClick={handleSignOut}
           className="h-10 hover:cursor-pointer">
           <LogOutIcon className="size-4 mr-2" />
           Log out

@@ -1,13 +1,11 @@
 "use client";
 
-
-
+import { UserButton } from "@/features/auth/components/user-button";
 // import { useGetWorkspaces } from "@/features/workspaces/api/use-get-workspaces";
 // import { useCreateWorkspacesModal } from "@/features/workspaces/store/use-create-workspaces-modal";
 import { useRouter } from "next/navigation";
 
 import { useEffect, useMemo } from "react";
-import { UserButton } from "./projects/auth/components/user-button";
 
 export default function Home() {
   const router = useRouter();
@@ -27,7 +25,7 @@ export default function Home() {
   // }, [workspacesId, isLoading, open, setOpen, router]);
 
   return (
-    <div>
+    <div className="container">
       <UserButton />
     </div>
   );

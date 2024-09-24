@@ -10,9 +10,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { userCurrentUser } from "../api/user-current-user";
+
 import { Loader, LogOutIcon } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
+import { userCurrentUser } from "../api/use-current-user";
 
 export const UserButton = () => {
   const { data, isLoading } = userCurrentUser();

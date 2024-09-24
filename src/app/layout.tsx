@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   description: "Events Registration App built with Next.js",
 };
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,8 +22,8 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ConvexClientProvider>
-            <Toaster />
-            <Modals />
+            {/* <Toaster />
+            <Modals /> */}
             {children}
           </ConvexClientProvider>
         </body>

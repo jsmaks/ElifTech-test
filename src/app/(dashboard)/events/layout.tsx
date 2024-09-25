@@ -1,5 +1,6 @@
 "use client";
 
+import { Separator } from "@/components/ui/separator";
 import { Toolbar } from "./toolbar";
 
 interface WorkspaceIdLayoutProps {
@@ -8,10 +9,9 @@ interface WorkspaceIdLayoutProps {
 const WorkspaceIdLayout = ({ children }: WorkspaceIdLayoutProps) => {
   return (
     <div className="h-full container">
- 
-        <Toolbar />
-        <div className="flex h-[calc(100vh-60px)]">{children}</div>
-    
+      <Toolbar />
+      <Separator className="my-5" />
+      <div>{children}</div>
     </div>
   );
 };

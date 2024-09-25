@@ -15,12 +15,16 @@ import { FcGoogle } from "react-icons/fc";
 import { SignInFlow } from "../types";
 import { useState } from "react";
 import { TriangleAlert } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface SignInCardProps {
+  //eslint-disable-next-line
   setState: (state: SignInFlow) => void;
 }
 
 export const SignInCard = ({ setState }: SignInCardProps) => {
+  const router = useRouter();
+
   const { signIn } = useAuthActions();
 
   const [email, setEmail] = useState("");
@@ -32,6 +36,9 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
     e.preventDefault();
     setLoading(true);
     signIn("password", { email, password, flow: "signIn" })
+      .then(() => {
+        router.push("/events");
+      })
       .catch(() => {
         setError("Invalid email or password");
       })

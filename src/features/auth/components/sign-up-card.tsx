@@ -16,12 +16,15 @@ import { TriangleAlert } from "lucide-react";
 import { SignInFlow } from "../types";
 import { useState } from "react";
 import { useAuthActions } from "@convex-dev/auth/react";
+import { useRouter } from "next/navigation";
 
 interface SignUpCardProps {
+  //eslint-disable-next-line
   setState: (state: SignInFlow) => void;
 }
 
 export const SignUpCard = ({ setState }: SignUpCardProps) => {
+  const router = useRouter();
   const { signIn } = useAuthActions();
 
   const [name, setName] = useState("");
@@ -41,7 +44,10 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
       setLoading(false);
       return;
     }
-    signIn("password", { name,email, password, flow: "signUp" })
+    signIn("password", { name, email, password, flow: "signUp" })
+      .then(() => {
+        router.push("/events");
+      })
       .catch(() => {
         setError("Something went wrong");
       })

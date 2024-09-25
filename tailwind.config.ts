@@ -14,6 +14,11 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "1280px",
+      },
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

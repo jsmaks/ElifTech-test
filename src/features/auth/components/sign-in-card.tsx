@@ -107,7 +107,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
             <FcGoogle className="absolute left-2.5 size-5 top-3" />
             Continue with Google
           </Button> */}
-          <Button
+          {/*<Button
             disabled={loading}
             onClick={() => onProvierSignIn("github")}
             variant="outline"
@@ -115,7 +115,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
             className="w-full relative">
             <FaGithub className="absolute left-2.5 size-5 top-3" />
             Continue with GitHub
-          </Button>
+          </Button>*/}
         </div>
         <p className="text-xs text-muted-foreground">
           Don&apos;t have an account?{" "}

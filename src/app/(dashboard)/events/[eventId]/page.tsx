@@ -1,38 +1,48 @@
 "use client";
-// import { db } from "@/lib/db";
+
 import { useEventById } from "@/app/hooks/use-get-event-users";
+import { User } from "lucide-react";
 import { useParams } from "next/navigation";
 
 const EventIdPage = () => {
-  // const event = await db.eventBoard.findUnique({
-  //   where: { id: params.eventId },
-  //   include: { list: true },
-  // });
-
-  // if (event === null) {
-  //   return <div className="font-bold text-2xl">Event ID not found</div>;
-  // }
-  // if (event.list.length === 0) {
-  //   return <div className="font-bold text-2xl">People not register yet</div>;
-  // }
-
   const params = useParams();
 
-  const { event } = useEventById(params.eventId as string);
+  const { event, loading } = useEventById(params.eventId as string);
+  console.log(event);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-96">
+        <span className="loader"></span>
+      </div>
+    );
+  }
+
+  if (!event) {
+    return <p>No event found by ID</p>;
+  }
 
   return (
-    <div className="w-full py-5">
+    <div>
       <h3 className="first-letter:uppercase font-bold text-2xl mb-10">
-        {`"${event?.title}"`} participants
+        {`"${event.title}"`} participants
       </h3>
-      <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-10">
-        {event?.list.map((list) => (
-          <li key={list.id} className="bg-slate-100 shadow-md p-5 rounded-sm">
-            <p className="font-medium text-xl">{list.name}</p>
-            <p>{list.email}</p>
-          </li>
-        ))}
-      </ul>
+
+      {event.list.length > 0 ? (
+        <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 md:gap-10">
+          {event.list.map((list) => (
+            <li key={list.id} className="bg-slate-100 shadow-md p-5 rounded-sm">
+              <p className="font-medium text-xl">{list.name}</p>
+              <p>{list.email}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="flex justify-center items-center h-96">
+          No participants found!
+          <User className="size-10 ml-2" />
+        </div>
+      )}
     </div>
   );
 };

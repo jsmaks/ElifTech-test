@@ -6,7 +6,9 @@ const EventsPage = () => {
     <div className="w-full">
       <div className="flex justify-between items-center mb-10">
         <h1 className="text-2xl font-semibold">Events</h1>
-        <AddEventButton />
+        <div className="flex gap-x-2 items-center">
+          <AddEventButton />
+        </div>
       </div>
       <EventList />
     </div>

@@ -9,6 +9,8 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useEventById } from "@/app/hooks/use-get-event-users";
 import { FaSpinner } from "react-icons/fa";
+import { useEvents } from "@/app/hooks/use-get-events"; // Импортируем useEvents
+import { toast } from "sonner";
 
 export const RegisterForm = () => {
   const params = useParams();
@@ -17,6 +19,14 @@ export const RegisterForm = () => {
 
   const [selectedOption, setSelectedOption] = useState<string>("social");
   const { exists } = useEventById(id);
+  const { currentPage } = useEvents();
+
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    date: "",
+  });
+  const [errors, setErrors] = useState({ fullName: "", email: "" });
 
   if (exists === null) {
     return (
@@ -33,35 +43,60 @@ export const RegisterForm = () => {
   const handleOptionChange = (value: string) => {
     setSelectedOption(value);
   };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const validate = () => {
+    let valid = true;
+    let errors = { fullName: "", email: "" };
+
+    if (formData.fullName.length < 3) {
+      errors.fullName = "Full Name must be at least 3 characters long.";
+      valid = false;
+    }
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(formData.email)) {
+      errors.email =
+        "Email must be a valid email address (e.g., user@example.com).";
+      valid = false;
+    }
+
+    setErrors(errors);
+    return valid;
+  };
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data = {
-      name: formData.get("fullName"),
-      email: formData.get("email"),
-      eventId: id,
-      date: formData.get("date"),
-      heardAbout: selectedOption,
-    };
+    if (validate()) {
+      const formData = new FormData(e.currentTarget);
+      const data = {
+        name: formData.get("fullName"),
+        email: formData.get("email"),
+        eventId: id,
+        date: formData.get("date"),
+        heardAbout: selectedOption,
+      };
 
-    try {
-      const response = await fetch(`/api/v1/events/${id}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      try {
+        const response = await fetch(`/api/v1/events/${id}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        toast.success("Registration successful!");
+        // Обновляем события на текущей странице
+        router.push(`/events?page=${currentPage}`);
+      } catch (error) {
+        console.error("Error:", error);
       }
-
-      await response.json(); // можно оставить или логировать результат
-      router.push(`/events`);
-    } catch (error) {
-      console.error("Error:", error);
     }
   };
 
@@ -69,10 +104,28 @@ export const RegisterForm = () => {
     <form onSubmit={onSubmit} className="space-y-6">
       <div className="grid gap-y-2">
         <Label htmlFor="fullName">Full Name</Label>
-        <Input name="fullName" required placeholder="Enter your full name" />
+        <Input
+          name="fullName"
+          value={formData.fullName}
+          onChange={handleChange}
+          required
+          placeholder="Enter your full name"
+        />
+        {errors.fullName && (
+          <span className="text-red-500 text-[10px]">{errors.fullName}</span>
+        )}
 
         <Label htmlFor="email">Email</Label>
-        <Input name="email" required placeholder="Enter your email" />
+        <Input
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          placeholder="Enter your email"
+        />
+        {errors.email && (
+          <span className=" text-[10px] text-red-500">{errors.email}</span>
+        )}
 
         <div className="grid w-full">
           <span className="text-sm">Date of Birth</span>

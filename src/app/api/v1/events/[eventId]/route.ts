@@ -9,14 +9,11 @@ export async function GET(
   try {
     const eventBoard = await db.eventBoard.findUnique({
       where: { id: params.eventId },
+      include: { list: true },
     });
 
     if (eventBoard) {
-      return NextResponse.json(
-        { exists: true },
-
-        { status: 200 }
-      );
+      return NextResponse.json({ exists: true, eventBoard }, { status: 200 });
     } else {
       return NextResponse.json(
         { message: "No EventBoard found with id " + params.eventId },
@@ -26,7 +23,8 @@ export async function GET(
   } catch (error: any) {
     return NextResponse.json(
       {
-        message: "",
+        message: "An error occurred while fetching the event board.",
+        error: error.message,
       },
       { status: 500 }
     );
@@ -49,7 +47,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await db.list.create({
+    const data = await db.list.create({
       data: {
         name: name,
         email: email,
@@ -57,7 +55,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    return new NextResponse(JSON.stringify({ message: "Success" }), {
+    return new NextResponse(JSON.stringify({ message: "Success", data }), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });

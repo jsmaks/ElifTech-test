@@ -44,7 +44,7 @@ export default function EventList() {
 
                 <div className="grid grid-cols-2 gap-x-5 mt-10 text-sm xl:text-xl font-normal">
                   <Link
-                    href={`/register/${event.id}`}
+                    href={`/register/${event.id}?page=${currentPage}`}
                     className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center duration-150">
                     Register
                   </Link>

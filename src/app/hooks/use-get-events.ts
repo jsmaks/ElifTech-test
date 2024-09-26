@@ -1,13 +1,20 @@
 import { useState, useEffect } from "react";
-
+interface List {
+  id: string;
+  name: string;
+  email: string;
+  eventId: string;
+  createdAt: string;
+  updatedAt: string;
+}
 interface Event {
   id: string;
   title: string;
   description: string;
   createdAt: string;
   updatedAt: string;
+  list: List[];
 }
-
 interface UseEventsResult {
   eventsList: Event[];
   currentPage: number;

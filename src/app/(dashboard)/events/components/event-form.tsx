@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useEventModal } from "@/app/hooks/use-create-event-modal";
+import { toast } from "sonner";
 
 export const EventForm = () => {
   const [message, setMessage] = useState<string | null>(null);
@@ -11,7 +12,7 @@ export const EventForm = () => {
 
   const { onClose } = useEventModal();
 
-  const handleSubmit = async (e: Record<string, any>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     const formData = new FormData(e.currentTarget);
     const data = Object.fromEntries(formData.entries());
     try {
@@ -28,6 +29,7 @@ export const EventForm = () => {
         setMessage(result.message);
         setError(null);
 
+        toast.success("Add event successful!");
         onClose();
       } else {
         const errorData = await response.json();

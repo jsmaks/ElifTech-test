@@ -1,5 +1,3 @@
-"use client";
-
 import { AddEventButton } from "./add-event-button";
 import EventList from "./components/events-list";
 

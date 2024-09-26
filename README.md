@@ -6,6 +6,13 @@
 
 A brief description of what the project does and its purpose.
 
+## Technologies Used
+
+- **Next.js**: A React framework for building server-side rendered applications.
+- **Prisma**: An ORM that simplifies database access and management.
+- **Convex**: A tool for building backend services with minimal boilerplate.
+- **PostgreSQL**: A powerful, open-source relational database.
+
 ## Features
 
 - **Base Functionality**: Introduced foundational features.

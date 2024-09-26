@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const page = parseInt(searchParams.get("page") || "1");
   const pageSize = 8;
@@ -25,7 +25,6 @@ export async function GET(request: Request) {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    console.log(body);
 
     const { title, description } = body;
 

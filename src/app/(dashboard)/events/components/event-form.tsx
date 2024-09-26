@@ -4,15 +4,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useEventModal } from "@/app/hooks/use-create-event-modal";
-import { useEvents } from "@/app/hooks/use-get-events";
 
 export const EventForm = () => {
   const [message, setMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const { fetchEvents, currentPage } = useEvents();
+
   const { onClose } = useEventModal();
 
-  const handleSubmit = async (data: Record<string, any>) => {
+  const handleSubmit = async (e: Record<string, any>) => {
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
     try {
       const response = await fetch("/api/v1/events", {
         method: "POST",
@@ -26,7 +27,7 @@ export const EventForm = () => {
         const result = await response.json();
         setMessage(result.message);
         setError(null);
-        await fetchEvents(currentPage);
+
         onClose();
       } else {
         const errorData = await response.json();
@@ -40,15 +41,8 @@ export const EventForm = () => {
     }
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    handleSubmit(data);
-  };
-
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div className="grid gap-y-2">
         <Label htmlFor="title">Title</Label>
         <Input name="title" required />

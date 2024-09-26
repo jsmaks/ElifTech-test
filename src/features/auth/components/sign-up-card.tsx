@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
 import { FaGithub } from "react-icons/fa";
+//eslint-disable-next-line
 import { FcGoogle } from "react-icons/fc";
 import { TriangleAlert } from "lucide-react";
 
@@ -120,7 +121,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
         </form>
         <Separator />
         <div className="flex flex-col gap-y-2.5">
-          <Button
+          {/* <Button
             disabled={loading}
             onClick={() => {
               onProvierSignUp("google");
@@ -130,7 +131,7 @@ export const SignUpCard = ({ setState }: SignUpCardProps) => {
             className="w-full relative">
             <FcGoogle className="absolute left-2.5 size-5 top-3" />
             Continue with Google
-          </Button>
+          </Button> */}
           <Button
             disabled={loading}
             onClick={() => {

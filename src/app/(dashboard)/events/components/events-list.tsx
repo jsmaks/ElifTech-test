@@ -1,3 +1,4 @@
+"use client";
 import { format } from "date-fns";
 
 import {
@@ -24,7 +25,7 @@ export default function EventList() {
   };
 
   return (
-    <>
+    <div>
       {loading ? (
         <div className="w-full h-full flex items-center justify-center">
           <FaSpinner className="animate-spin h-10 w-10 text-blue-500" />
@@ -61,35 +62,28 @@ export default function EventList() {
           </ul>
 
           <Pagination>
+            <PaginationPrevious
+              className="hover:cursor-pointer"
+              onClick={() => handlePageChange(currentPage - 1)}
+            />
             <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  className="hover:cursor-pointer"
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  isActive={currentPage === 1}
-                />
-              </PaginationItem>
-
-              {Array.from({ length: totalPages }, (_, index) => (
-                <PaginationItem key={index}>
+              {Array.from({ length: totalPages }, (_, i) => (
+                <PaginationItem key={i}>
                   <PaginationLink
-                    onClick={() => handlePageChange(index + 1)}
-                    className="hover:cursor-pointer">
-                    {index + 1}
+                    className="hover:cursor-pointer"
+                    onClick={() => handlePageChange(i + 1)}>
+                    {i + 1}
                   </PaginationLink>
                 </PaginationItem>
               ))}
-
-              <PaginationItem>
-                <PaginationNext
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  className="hover:cursor-pointer"
-                />
-              </PaginationItem>
             </PaginationContent>
+            <PaginationNext
+              className="hover:cursor-pointer"
+              onClick={() => handlePageChange(currentPage + 1)}
+            />
           </Pagination>
         </div>
       )}
-    </>
+    </div>
   );
 }

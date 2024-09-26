@@ -17,6 +17,7 @@ export const AddEventButton = () => {
   return (
     <>
       <Button onClick={() => onOpen()}>Add event</Button>
+
       <Dialog open={isOpen} onOpenChange={onClose}>
         <DialogContent>
           <DialogHeader>
@@ -29,3 +30,43 @@ export const AddEventButton = () => {
     </>
   );
 };
+// import { useState } from "react";
+// import { Button } from "@/components/ui/button";
+
+// export const AddEventButton = () => {
+//   const [message, setMessage] = useState<string | null>(null);
+//   const [error, setError] = useState<string | null>(null);
+
+//   const handleAddEvent = async () => {
+//     try {
+//       const response = await fetch("/api/v1/events", {
+//         method: "GET",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       });
+
+//       if (response.ok) {
+//         const result = await response.json();
+//         setMessage(result.message);
+//         setError(null);
+//       } else {
+//         const errorData = await response.json();
+//         setError(errorData.error);
+//         setMessage(null);
+//       }
+//     } catch (error) {
+//       console.error("Error fetching events:", error);
+//       setError("An unexpected error occurred.");
+//       setMessage(null);
+//     }
+//   };
+
+//   return (
+//     <>
+//       <Button onClick={handleAddEvent}>Fetch events</Button>
+//       {message && <p>{message}</p>}
+//       {error && <p>{error}</p>}
+//     </>
+//   );
+// };

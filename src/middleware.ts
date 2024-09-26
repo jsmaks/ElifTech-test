@@ -8,6 +8,13 @@ import {
 const isPublic = createRouteMatcher(["/auth"]);
 
 export default convexAuthNextjsMiddleware((request) => {
+  const url = new URL(request.url);
+
+  // Redirect root path to /events
+  if (url.pathname === "/") {
+    return nextjsMiddlewareRedirect(request, "/events");
+  }
+
   if (!isPublic(request) && !isAuthenticatedNextjs()) {
     return nextjsMiddlewareRedirect(request, "/auth");
   }
@@ -15,6 +22,7 @@ export default convexAuthNextjsMiddleware((request) => {
     return nextjsMiddlewareRedirect(request, "/events");
   }
 });
+
 export const config = {
   // The following matcher runs middleware on all routes
   // except static assets.

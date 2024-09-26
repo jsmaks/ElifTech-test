@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 interface Event {
@@ -6,6 +5,7 @@ interface Event {
   title: string;
   description: string;
   createdAt: string;
+  updatedAt: string;
 }
 
 interface UseEventsResult {
@@ -31,6 +31,8 @@ export const useEvents = (): UseEventsResult => {
       setEventsList(data.events);
       setTotalPages(data.totalPages);
       setCurrentPage(data.currentPage);
+
+      window.history.pushState({}, "", `?page=${page}`);
     } catch (error) {
       console.error("Failed to fetch events:", error);
     } finally {

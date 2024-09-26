@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 import { SignInFlow } from "../types";
 import { useState } from "react";
 import { TriangleAlert } from "lucide-react";
@@ -98,7 +98,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
         </form>
         <Separator />
         <div className="flex flex-col gap-y-2.5">
-          <Button
+          {/* <Button
             disabled={loading}
             onClick={() => onProvierSignIn("google")}
             variant="outline"
@@ -106,7 +106,7 @@ export const SignInCard = ({ setState }: SignInCardProps) => {
             className="w-full relative">
             <FcGoogle className="absolute left-2.5 size-5 top-3" />
             Continue with Google
-          </Button>
+          </Button> */}
           <Button
             disabled={loading}
             onClick={() => onProvierSignIn("github")}

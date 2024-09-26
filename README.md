@@ -1,6 +1,5 @@
 # Project Title
 
-![Project Logo](link-to-your-logo)
 
 ## Overview
 

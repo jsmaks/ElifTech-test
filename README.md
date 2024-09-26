@@ -32,4 +32,4 @@ Follow these steps to install the project:
 
 1. Clone the repository:  
    ```bash
-   git clone https://github.com/yourusername/your-repo.git
+   git clone [https://github.com/jsmaks/ElifTech-test.git](https://github.com/jsmaks/ElifTech-test.git)

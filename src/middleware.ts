@@ -19,7 +19,7 @@ export default convexAuthNextjsMiddleware((request) => {
     return nextjsMiddlewareRedirect(request, "/auth");
   }
   if (isPublic(request) && isAuthenticatedNextjs()) {
-    return nextjsMiddlewareRedirect(request, "/events");
+    return nextjsMiddlewareRedirect(request, "/events?page=1&search=");
   }
 });
 

@@ -1,18 +1,35 @@
-In this project, I've implemented several key features to enhance functionality and improve user experience.
+# Project Title
 
-Features Added
-Base Functionality: Introduced the foundational features that form the core of the application.
-Sorting and Searching: Integrated sorting and searching capabilities from the Middle layer to allow users to efficiently navigate through data.
-Pagination: Implemented pagination from the Advanced layer to optimize data presentation and improve load times.
-Event Creation: Added functionality for users to create and add new events to the application.
+![Project Logo](link-to-your-logo)
 
+## Overview
 
-You can try out the project https://elif-tech-test.vercel.app/
+A brief description of what the project does and its purpose.
 
-Test User
+## Features
+
+- **Base Functionality**: Introduced foundational features.
+- **Sorting and Searching**: Enhanced data navigation.
+- **Pagination**: Optimized data presentation.
+- **Event Creation**: Users can create and add new events.
+
+## Live Demo
+
+You can try out the project [here](https://elif-tech-test.vercel.app/).
+
+### Test User
+
 For testing purposes, you can log in using the following credentials:
 
-Email: user@gmail.com
-Password: 12345678
+- **Email**: user@gmail.com
+- **Password**: 12345678
 
 Feel free to register your own user account!
+
+## Installation
+
+Follow these steps to install the project:
+
+1. Clone the repository:  
+   ```bash
+   git clone https://github.com/yourusername/your-repo.git

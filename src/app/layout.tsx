@@ -6,13 +6,23 @@ import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { ConvexClientProvider } from "@/components/convex-client-provider";
 
 import { Toaster } from "sonner";
-// import { Modals } from "@/components/modals";
 
 const inter = Inter({ subsets: ["latin"] });
+
+// export const metadata: Metadata = {
+//   title: "Events Registration",
+//   description: "Events Registration App built with Next.js",
 
 export const metadata: Metadata = {
   title: "Events Registration",
   description: "Events Registration App built with Next.js",
+
+  icons: [
+    {
+      url: "/logo.svg",
+      href: "/logo.svg",
+    },
+  ],
 };
 
 export default function RootLayout({

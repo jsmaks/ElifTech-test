@@ -14,10 +14,12 @@ A brief description of what the project does and its purpose.
 
 ## Features
 
-- **Base Functionality**: Introduced foundational features.
+- **Full Base Functionality**: Introduced foundational features.
+and
 - **Sorting and Searching**: Enhanced data navigation.
 - **Pagination**: Optimized data presentation.
 - **Event Creation**: Users can create and add new events.
+- **Authentication**: Users can log in using email/password or their GitHub account.
 
 ## Live Demo
 

@@ -15,7 +15,6 @@ A brief description of what the project does and its purpose.
 ## Features
 
 - **Full Base Functionality**: Introduced foundational features.
-and
 - **Sorting and Searching**: Enhanced data navigation.
 - **Pagination**: Optimized data presentation.
 - **Event Creation**: Users can create and add new events.
